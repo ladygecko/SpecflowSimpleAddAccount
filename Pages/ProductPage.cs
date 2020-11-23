@@ -5,18 +5,20 @@ using SeleniumExtras.WaitHelpers;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using TechTalk.SpecFlow;
 
 namespace Specflow_Unleashed.Pages
 {
     public class ProductPage
     {
-        
-        public IWebDriver webDriver { get; }
-        public ProductPage(IWebDriver webDriver) {
-            this.webDriver = webDriver;
+
+        private readonly IWebDriver webDriver;
+
+        public ProductPage(ScenarioContext scenarioContext) {
+            
+            webDriver = scenarioContext.Get<IWebDriver>("currentDriver");
             Helper helper = new Helper(webDriver);
-            helper.WaitForElementIsVisibleByID("tabsDetailsLink");
-          
+            helper.WaitForElementIsVisibleByID("tabsDetailsLink");  
 
         }
 
@@ -31,13 +33,7 @@ namespace Specflow_Unleashed.Pages
             
         }
 
-        public void checkMessageBoxText(String message) {
         
-            Helper helper = new Helper(webDriver);
-            helper.WaitForElementIsVisibleByXPath("//*[@class='ui-pnotify-text ']");
-            var xPathmessage = webDriver.FindElement(By.XPath("//*[@class='ui-pnotify-text ']")).Text;
-            Assert.AreEqual("You have updated the product successfully.", xPathmessage);
-        }
 
         
 

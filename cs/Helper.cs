@@ -1,4 +1,5 @@
-﻿using OpenQA.Selenium;
+﻿using NUnit.Framework;
+using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using SeleniumExtras.WaitHelpers;
 using System;
@@ -9,13 +10,10 @@ namespace Specflow_Unleashed.Pages
 {
     public class Helper
     {
-        
-        public IWebDriver webDriver { get; }
+
+        public IWebDriver webDriver;
         public Helper(IWebDriver webDriver) {
             this.webDriver = webDriver;
-           // TimeSpan span = new TimeSpan(0, 0, 0, 30, 0);
-           // WebDriverWait wait = new WebDriverWait(webDriver, span);
-           // wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//*[@class='ng-binding' and contains(text(),'Dashboard')]")));
 
         }
         public void WaitForElementIsVisibleByXPath(String xpath) {
@@ -30,6 +28,31 @@ namespace Specflow_Unleashed.Pages
             WebDriverWait wait = new WebDriverWait(webDriver, span);
             wait.Until(ExpectedConditions.ElementIsVisible(By.Id(id)));
         }
+
+        
+        public void WebdriverWait(int milliS)  => System.Threading.Thread.Sleep(milliS);
+
+        public void checkMessageBoxText(String message)
+        {
+
+            //Helper helper = new Helper(webDriver);
+            WaitForElementIsVisibleByXPath("//*[@class='ui-pnotify-text ']");
+            var xPathmessage = webDriver.FindElement(By.XPath("//*[@class='ui-pnotify-text ']")).Text;
+            Assert.AreEqual(message, xPathmessage);
+
+        }
+
+        public void checkMessageBoxTextContains(String message)
+        {
+
+            //Helper helper = new Helper(webDriver);
+            WaitForElementIsVisibleByXPath("//*[@class='ui-pnotify-text ']");
+            var xPathmessage = webDriver.FindElement(By.XPath("//*[@class='ui-pnotify-text ']")).Text;
+            //if (xPathmessage.Contains(message) == true);
+            Assert.True(xPathmessage.Contains(message));
+
+        }
+
 
     }
 }

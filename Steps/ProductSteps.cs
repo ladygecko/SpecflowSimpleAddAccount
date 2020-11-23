@@ -13,14 +13,22 @@ namespace Specflow_Unleashed.Steps
     [Binding]
     public class ProductSteps 
     {
-        IWebDriver webDriver = new ChromeDriver();
+        
+        private readonly ScenarioContext _scenarioContext;
+        private readonly IWebDriver webDriver;
+
+
+        public ProductSteps(ScenarioContext scenarioContext)
+        {
+            this._scenarioContext = scenarioContext;
+            webDriver = scenarioContext.Get<IWebDriver>("currentDriver");
+        }
+
         [Given(@"I login to Unleashed Software with below credentials")]
         public void GivenILoginToUnleashedSoftwareWithBelowCredentials(Table table)
         {
-            //IWebDriver webDriver = new ChromeDriver();
             dynamic data = table.CreateDynamicInstance();
-            webDriver.Navigate().GoToUrl("https://www.unleashedsoftware.com/");
-            LoginPage loginPage = new LoginPage(webDriver);
+            LoginPage loginPage = new LoginPage(this._scenarioContext);
             loginPage.ClickLogin();
             
             loginPage.EnterCredentials(data.Username, data.Password);
@@ -28,25 +36,24 @@ namespace Specflow_Unleashed.Steps
           
         }
         
-        [When(@"I click Add Product")]
-        public void WhenIClickAddProduct()
+
+        [When(@"I click Inventory -> Products -> Add Product")]
+        public void WhenIClickInventory_Products_AddProduct()
         {
-            DashboardPage dashboard = new DashboardPage(webDriver);
+            DashboardPage dashboard = new DashboardPage(this._scenarioContext);
             dashboard.ClickMenuInventory();
             dashboard.ClickSubmenuProducts();
             dashboard.ClickSubmenuAddProdcut();
-
         }
-        
-        
-       
+
+
+
         [Then(@"An alert message appears with text")]
         public void ThenAnAlertMessageAppearsWithText(Table table)
         {
             dynamic data = table.CreateDynamicInstance();
-            ProductPage productPage = new ProductPage(webDriver);
-            productPage.checkMessageBoxText(data.Message);
-            webDriver.Quit();
+            Helper helper = new Helper(webDriver);
+            helper.checkMessageBoxText(data.Message);
 
         }
 
@@ -56,7 +63,7 @@ namespace Specflow_Unleashed.Steps
         public void WhenICreateTheFollowingProductDetails(Table table)
         {
             dynamic data = table.CreateDynamicInstance();
-            ProductPage productPage = new ProductPage(webDriver);
+            ProductPage productPage = new ProductPage(this._scenarioContext);
             productPage.AddProduct(data.ProductCode, data.ProductDescription);
             productPage.btnSave.Click();
         }

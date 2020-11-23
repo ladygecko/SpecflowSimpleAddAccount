@@ -4,18 +4,19 @@ using SeleniumExtras.WaitHelpers;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using TechTalk.SpecFlow;
 
 namespace Specflow_Unleashed.Pages
 {
     public class LoginPage
     {
-        
-        public IWebDriver webDriver { get; }
-        
-        public LoginPage(IWebDriver webDriver) {
-            this.webDriver = webDriver;
-           
 
+        private readonly IWebDriver webDriver;
+
+        
+        public LoginPage(ScenarioContext scenarioContext) {
+           webDriver = scenarioContext.Get<IWebDriver>("currentDriver");
+           
         }
 
         public IWebElement btnLogin => webDriver.FindElement(By.XPath("//*[@class='login']"));
@@ -24,7 +25,9 @@ namespace Specflow_Unleashed.Pages
         public IWebElement btnLogonUser => webDriver.FindElement(By.Id("btnLogOn"));
         public void ClickLogin()
         {
-            btnLogin.Click();
+           var btn =  webDriver.FindElement(By.XPath("//*[@class='login']"));
+            //btnLogin.Click();
+            btn.Click();
         }
 
         public void EnterCredentials(String username, String password) {
