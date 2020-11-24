@@ -11,11 +11,12 @@ namespace Specflow_Unleashed.Pages
     public class DashboardPage
     {
         private readonly IWebDriver webDriver;
+        private readonly Helper helper;
 
         public DashboardPage(ScenarioContext scenarioContext) {
 
             webDriver = scenarioContext.Get<IWebDriver>("currentDriver");
-            Helper helper = new Helper(webDriver);
+            helper = new Helper(webDriver);
             helper.WaitForElementIsVisibleByXPath("//*[@class='ng-binding' and contains(text(),'Dashboard')]");
             
         }
@@ -31,7 +32,6 @@ namespace Specflow_Unleashed.Pages
         public void ClickMenuInventory() => mnuInventory.Click();
       
         public void ClickSubmenuProducts() {
-            Helper helper = new Helper(webDriver);
             
             helper.WaitForElementIsVisibleByXPath("//*[text()='Products' and @class='ng-binding']");
             sbmProduct.Click();
@@ -39,8 +39,6 @@ namespace Specflow_Unleashed.Pages
 
         public void ClickSubmenuAddProdcut() {
 
-           
-            Helper helper = new Helper(webDriver);
             helper.WaitForElementIsVisibleByXPath("//*[text()='Add Product' and @class='ng-binding']");
             sbmAddProduct.Click(); 
         
@@ -49,7 +47,6 @@ namespace Specflow_Unleashed.Pages
         public void ClickMenuSales() => mnuSales.Click();
         public void ClickSubmenuOrders()
         {
-            Helper helper = new Helper(webDriver);
 
             helper.WaitForElementIsVisibleByXPath("//*[text()='Orders' and @class='ng-binding']//parent::*");
             sbmMnuOrders.Click();
@@ -57,8 +54,6 @@ namespace Specflow_Unleashed.Pages
 
         public void ClickSubmenuAddSalesOrder()
         {
-            Helper helper = new Helper(webDriver);
-
             helper.WaitForElementIsVisibleByXPath("//*[text()='Add Sales Order' and @class='ng-binding']//parent::*");
             sbmMnuAddSalesOrder.Click();
         }

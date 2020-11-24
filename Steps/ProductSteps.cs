@@ -47,7 +47,6 @@ namespace Specflow_Unleashed.Steps
         }
 
 
-
         [Then(@"An alert message appears with text")]
         public void ThenAnAlertMessageAppearsWithText(Table table)
         {
@@ -57,7 +56,6 @@ namespace Specflow_Unleashed.Steps
 
         }
 
-       
 
         [When(@"I create the following product details")]
         public void WhenICreateTheFollowingProductDetails(Table table)

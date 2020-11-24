@@ -13,10 +13,12 @@ namespace Specflow_Unleashed.Pages
     {
       
         private readonly IWebDriver webDriver;
+        private readonly Helper helper;
 
         public AddSalesOrderPage(ScenarioContext scenarioContext) {
             webDriver = scenarioContext.Get<IWebDriver>("currentDriver");
-        
+            helper = new Helper(webDriver);
+
         }
 
         public IWebElement txtCustCd => webDriver.FindElement(By.XPath("//*[@name='Customer.CustomerCode' and @type='text']"));
@@ -34,9 +36,8 @@ namespace Specflow_Unleashed.Pages
             webDriver.FindElement(By.XPath("//*[@class='product-link ng-binding' and text()='" + item + "']"));
 
 
-
         public void AddOrder(dynamic data) {
-            Helper helper = new Helper(webDriver);
+            
             helper.WaitForElementIsVisibleByXPath("//*[@name='Customer.CustomerCode' and @type='text']");
             customerSearchButton.Click();
             helper.WebdriverWait(1000);
@@ -60,7 +61,6 @@ namespace Specflow_Unleashed.Pages
         
         public void ClickAdd() => btnAddOrderLine.Click();
         public void ClickComplete() {
-            Helper helper = new Helper(webDriver);
             helper.WaitForElementIsVisibleByID("btnComplete");
             btnComplete.Click();
             helper.WaitForElementIsVisibleByID("generic-confirm-modal-yes");

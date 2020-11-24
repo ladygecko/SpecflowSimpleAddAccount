@@ -29,9 +29,6 @@ namespace Specflow_Unleashed.Pages
         public IWebElement stockOnHandCount => webDriver.FindElement(By.Id("StockOnHand"));
 
         
-        
-
-        
         public void AddProduct(string code, string desc) 
         {
             txtProductCd.SendKeys(code);

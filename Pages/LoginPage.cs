@@ -26,7 +26,6 @@ namespace Specflow_Unleashed.Pages
         public void ClickLogin()
         {
            var btn =  webDriver.FindElement(By.XPath("//*[@class='login']"));
-            //btnLogin.Click();
             btn.Click();
         }
 

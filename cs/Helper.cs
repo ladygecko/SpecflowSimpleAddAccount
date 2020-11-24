@@ -35,7 +35,6 @@ namespace Specflow_Unleashed.Pages
         public void checkMessageBoxText(String message)
         {
 
-            //Helper helper = new Helper(webDriver);
             WaitForElementIsVisibleByXPath("//*[@class='ui-pnotify-text ']");
             var xPathmessage = webDriver.FindElement(By.XPath("//*[@class='ui-pnotify-text ']")).Text;
             Assert.AreEqual(message, xPathmessage);
@@ -45,10 +44,8 @@ namespace Specflow_Unleashed.Pages
         public void checkMessageBoxTextContains(String message)
         {
 
-            //Helper helper = new Helper(webDriver);
             WaitForElementIsVisibleByXPath("//*[@class='ui-pnotify-text ']");
             var xPathmessage = webDriver.FindElement(By.XPath("//*[@class='ui-pnotify-text ']")).Text;
-            //if (xPathmessage.Contains(message) == true);
             Assert.True(xPathmessage.Contains(message));
 
         }

@@ -18,8 +18,9 @@ namespace Specflow_Unleashed.Steps
         private readonly ScenarioContext _scenarioContext;
         public SalesSteps(ScenarioContext scenarioContext) {
             this._scenarioContext = scenarioContext;
-            addSalesOrderPage = new AddSalesOrderPage(_scenarioContext);
             webDriver = scenarioContext.Get<IWebDriver>("currentDriver");
+            addSalesOrderPage = new AddSalesOrderPage(_scenarioContext);
+            
         }
 
         [When(@"I click Sales -> Orders -> Add Sales Order")]
@@ -46,8 +47,6 @@ namespace Specflow_Unleashed.Steps
         [When(@"I click Complete button")]
         public void WhenIClickCompleteButton() => addSalesOrderPage.ClickComplete();
         
-
-      
 
         [Then(@"An alert message contains text")]
         public void ThenAnAlertMessageContainsText(Table table)
