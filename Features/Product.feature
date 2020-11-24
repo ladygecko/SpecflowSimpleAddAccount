@@ -1,5 +1,5 @@
 ﻿Feature: Product
-Background: 
+Background: This tests features of the product module.
 Scenario:  Navigate to Add Product page and create a new product
  Given I login to Unleashed Software with below credentials
   | Username      | Password    |

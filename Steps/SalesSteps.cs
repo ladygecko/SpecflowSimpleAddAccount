@@ -2,6 +2,7 @@
 using OpenQA.Selenium;
 using Specflow_Unleashed.Pages;
 using System;
+using System.Linq;
 using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Assist;
 
@@ -46,11 +47,7 @@ namespace Specflow_Unleashed.Steps
         public void WhenIClickCompleteButton() => addSalesOrderPage.ClickComplete();
         
 
-        [Then(@"The Stock on Hand of the product should display '(.*)'")]
-        public void ThenTheStockOnHandOfTheProductShouldDisplay(int p0)
-        {
-           // ScenarioContext.Current.Pending();
-        }
+      
 
         [Then(@"An alert message contains text")]
         public void ThenAnAlertMessageContainsText(Table table)
@@ -59,6 +56,20 @@ namespace Specflow_Unleashed.Steps
             Helper helper= new Helper(webDriver);
             helper.checkMessageBoxTextContains(data.Message);
         }
+
+        [Then(@"Stock on hand of product '(.*)' is greater than (.*)")]
+        public void ThenStockOnHandOfProductIsGreaterThan(string product, int qty)
+        {
+            AddSalesOrderPage addSalesOrderPage = new AddSalesOrderPage(_scenarioContext);
+            addSalesOrderPage.ClickPrdLink(product);
+            webDriver.SwitchTo().Window(webDriver.WindowHandles.Last());
+            ProductPage productPage = new ProductPage(_scenarioContext);
+            var stockCount = productPage.getNumberOfStockOnHand();
+
+            Assert.IsTrue(stockCount > qty);
+
+        }
+
 
     }
 }

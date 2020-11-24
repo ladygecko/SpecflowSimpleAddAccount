@@ -26,13 +26,24 @@ namespace Specflow_Unleashed.Pages
         public IWebElement txtProductDesc => webDriver.FindElement(By.Id("Product_ProductDescription"));
 
         public IWebElement btnSave => webDriver.FindElement(By.Id("btnSave"));
+        public IWebElement stockOnHandCount => webDriver.FindElement(By.Id("StockOnHand"));
 
-        public void AddProduct(String code, String desc) {
+        
+        
+
+        
+        public void AddProduct(string code, string desc) 
+        {
             txtProductCd.SendKeys(code);
             txtProductDesc.SendKeys(desc);
             
         }
-
+ 
+        public decimal getNumberOfStockOnHand()
+        {
+            var count = Decimal.Parse(webDriver.FindElement(By.Id("StockOnHand")).Text.Trim());
+            return count;
+        } 
         
 
         

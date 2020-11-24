@@ -28,18 +28,14 @@ namespace Specflow_Unleashed.Pages
         public IWebElement customerSearchButton => webDriver.FindElement(By.Id("CustomerSearchButton"));
         public IWebElement customerSearchCode => webDriver.FindElement(By.Id("CustomerSearchCode"));
         public IWebElement runCustomerSearch => webDriver.FindElement(By.Id("RunCustomerSearch"));
-        public IWebElement selectedCust(String custCode) => webDriver.FindElement(By.XPath("//*[@href='#' and contains(text(),'" + custCode + "')]"));
+        public IWebElement selectedCust(string custCode) => webDriver.FindElement(By.XPath("//*[@href='#' and contains(text(),'" + custCode + "')]"));
         public IWebElement confirmYes => webDriver.FindElement(By.Id("generic-confirm-modal-yes"));
-
-        public String getOrderStatusDisplaValue(String status) {
-            
-    
-            return webDriver.FindElement(By.XPath("//*[@id='OrderStatusDisplay']")).Text;
-        }
+        public IWebElement prdLink(string item) =>
+            webDriver.FindElement(By.XPath("//*[@class='product-link ng-binding' and text()='" + item + "']"));
 
 
 
-    public void AddOrder(dynamic data) {
+        public void AddOrder(dynamic data) {
             Helper helper = new Helper(webDriver);
             helper.WaitForElementIsVisibleByXPath("//*[@name='Customer.CustomerCode' and @type='text']");
             customerSearchButton.Click();
@@ -70,13 +66,16 @@ namespace Specflow_Unleashed.Pages
             helper.WaitForElementIsVisibleByID("generic-confirm-modal-yes");
             confirmYes.Click();
             helper.WebdriverWait(1000);
-            TimeSpan span = new TimeSpan(0, 0, 0, 30, 0);
-            WebDriverWait wait = new WebDriverWait(webDriver, span);
-            wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//*[@id='btnComplete' and @disabled='disabled']")));
-
+         
         }
 
-        
+        public void ClickPrdLink(string item)
+        {
+            TimeSpan span = new TimeSpan(0, 0, 0, 30, 0);
+            WebDriverWait wait = new WebDriverWait(webDriver, span);
+            wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//*[@class='product-link ng-binding' and text()='" + item + "']")));
+            prdLink(item).Click();
+        }
 
 
     }

@@ -30,7 +30,7 @@ namespace Specflow_Unleashed.Pages
             btn.Click();
         }
 
-        public void EnterCredentials(String username, String password) {
+        public void EnterCredentials(string username, string password) {
            
             Helper helper = new Helper(webDriver);
             helper.WaitForElementIsVisibleByID("username");

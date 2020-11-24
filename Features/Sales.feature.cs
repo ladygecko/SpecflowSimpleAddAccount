@@ -128,7 +128,7 @@ this.FeatureBackground();
                             "Comments"});
                 table5.AddRow(new string[] {
                             "WADE",
-                            "BOOKSHELF",
+                            "SHELF",
                             "1",
                             "QATesting"});
 #line 8
@@ -146,6 +146,9 @@ this.FeatureBackground();
                             "You have successfully saved Sales Order"});
 #line 13
  testRunner.Then("An alert message contains text", ((string)(null)), table6, "Then ");
+#line hidden
+#line 16
+ testRunner.And("Stock on hand of product \'SHELF\' is greater than 0", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();

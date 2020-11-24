@@ -2,7 +2,8 @@
 
 
 # Introduction
-This is a sample Specflow project.
+This is a sample Specflow project. 
+This contains simple hooks methods for before and after scenarios, Helper class for common functions, and page objects for web UI elements.
 
 # Setup
 
