@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Text;
 using TechTalk.SpecFlow;
 
-namespace Specflow_Unleashed.Pages
+namespace Specflow_Xero.Pages
 {
     public class LoginPage
     {
@@ -19,10 +19,10 @@ namespace Specflow_Unleashed.Pages
            
         }
 
-        public IWebElement btnLogin => webDriver.FindElement(By.XPath("//*[@class='login']"));
-        public IWebElement txtUsername => webDriver.FindElement(By.Id("username"));
-        public IWebElement txtPassword => webDriver.FindElement(By.Id("password"));
-        public IWebElement btnLogonUser => webDriver.FindElement(By.Id("btnLogOn"));
+        public IWebElement btnLogin => webDriver.FindElement(By.XPath("//*[@data-automationid='LoginSubmit--button']"));
+        public IWebElement txtUsername => webDriver.FindElement(By.Name("Username"));
+        public IWebElement txtPassword => webDriver.FindElement(By.Name("Password"));
+        
         public void ClickLogin()
         {
            var btn =  webDriver.FindElement(By.XPath("//*[@class='login']"));
@@ -32,14 +32,15 @@ namespace Specflow_Unleashed.Pages
         public void EnterCredentials(string username, string password) {
            
             Helper helper = new Helper(webDriver);
-            helper.WaitForElementIsVisibleByID("username");
+            helper.WaitForElementIsVisibleByName("Username");
             txtUsername.SendKeys(username);
             txtPassword.SendKeys(password);
+            btnLogin.Click();
             
         }
 
 
-        public void ClickLoginButton() => btnLogonUser.Submit();
+        
           
     }
 }

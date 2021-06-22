@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using TechTalk.SpecFlow;
 
-namespace Specflow_Unleashed.cs
+namespace Specflow_Xero.cs
 {
     [Binding]
     public sealed class GeneralHooks
@@ -20,7 +20,7 @@ namespace Specflow_Unleashed.cs
             _driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
             _driver.Manage().Timeouts().PageLoad = TimeSpan.FromSeconds(10);
             _driver.Manage().Window.Maximize();
-            _driver.Navigate().GoToUrl("https://www.unleashedsoftware.com/");
+            _driver.Navigate().GoToUrl("https://login.xero.com/identity/user/login");
             scenarioContext.Add("currentDriver", _driver);
             
         }

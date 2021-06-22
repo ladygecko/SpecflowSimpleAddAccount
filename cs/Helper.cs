@@ -6,7 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Specflow_Unleashed.Pages
+namespace Specflow_Xero.Pages
 {
     public class Helper
     {
@@ -29,7 +29,14 @@ namespace Specflow_Unleashed.Pages
             wait.Until(ExpectedConditions.ElementIsVisible(By.Id(id)));
         }
 
-        
+        public void WaitForElementIsVisibleByName(String name)
+        {
+            TimeSpan span = new TimeSpan(0, 0, 0, 30, 0);
+            WebDriverWait wait = new WebDriverWait(webDriver, span);
+            wait.Until(ExpectedConditions.ElementIsVisible(By.Name(name)));
+        }
+
+
         public void WebdriverWait(int milliS)  => System.Threading.Thread.Sleep(milliS);
 
         public void checkMessageBoxText(String message)

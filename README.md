@@ -7,4 +7,4 @@ This contains simple hooks methods for before and after scenarios, Helper class 
 
 # Setup
 
-This has been tested using Google Chrome browser Version 87.0.4280.66 and ChromeDriver 86.0.4240.2200
+You should use Google Chrome browser Version Version 91.0.4472.114 to runs this test.
