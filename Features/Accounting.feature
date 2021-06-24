@@ -5,6 +5,7 @@ Scenario:  Add bank account
   | Username      | Password    |
   | guen_yu@yahoo.com | password123 |
  When I click 'Accounting' from menu
+ When I click Bank accounts from Accounting submenu
  Then I add new bank account
   | BankName | AccountName | AccountType           | AccountNumber |
   | ANZ (NZ) | Guen Yu     | Everyday (day-to-day) | 061123456     |

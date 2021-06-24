@@ -41,7 +41,7 @@ namespace Specflow_Xero.Pages
             var elements = bankUL.FindElements(By.TagName("li"));
             foreach (IWebElement li in elements)
             {
-                if (li.Text.Equals("ANZ (NZ)"))
+                if (li.Text.Equals(data.BankName))
                 {
                     li.Click();
                     break;

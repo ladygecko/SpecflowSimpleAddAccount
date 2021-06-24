@@ -38,8 +38,15 @@ namespace Specflow_Xero.Steps
         {
             DashboardPage dashboard = new DashboardPage(this._scenarioContext);
             dashboard.ClickSubmenu(text);
-            dashboard.ClickSubmenuBankAccounts();
             
+        }
+
+        [When(@"I click Bank accounts from Accounting submenu")]
+        public void WhenIClickAccountingSubmenu()
+        {
+            DashboardPage dashboard = new DashboardPage(this._scenarioContext);
+            dashboard.ClickAccountingBankAccountSubmenu();
+
         }
 
         [Then(@"I add new bank account")]

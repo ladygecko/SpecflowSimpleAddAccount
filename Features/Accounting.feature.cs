@@ -121,6 +121,9 @@ this.FeatureBackground();
 #line 7
  testRunner.When("I click \'Accounting\' from menu", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
+#line 8
+ testRunner.When("I click Bank accounts from Accounting submenu", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
                 TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
                             "BankName",
                             "AccountName",
@@ -131,7 +134,7 @@ this.FeatureBackground();
                             "Guen Yu",
                             "Everyday (day-to-day)",
                             "061123456"});
-#line 8
+#line 9
  testRunner.Then("I add new bank account", ((string)(null)), table2, "Then ");
 #line hidden
             }

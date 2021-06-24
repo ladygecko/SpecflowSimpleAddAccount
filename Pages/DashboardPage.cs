@@ -22,9 +22,9 @@ namespace Specflow_Xero.Pages
         
         public IWebElement mnuElement (String text) {
             return webDriver.FindElement(By.XPath("//*[@data-name='navigation-menu/" + text.ToLower() + "']"));
-        } 
+        }
         public IWebElement mnuBankAccounts => webDriver.FindElement(By.XPath("//*[@data-name='navigation-menu/accounting/bank-accounts']"));
-      
+        
       
 
         public void ClickSubmenu(String text)
@@ -35,7 +35,7 @@ namespace Specflow_Xero.Pages
         }
         
 
-        public void ClickSubmenuBankAccounts() { 
+        public void ClickAccountingBankAccountSubmenu() { 
 
             helper.WaitForElementIsVisibleByXPath("//*[@data-name='navigation-menu/accounting/bank-accounts']");
             mnuBankAccounts.Click();
