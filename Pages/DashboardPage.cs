@@ -17,22 +17,25 @@ namespace Specflow_Xero.Pages
 
             webDriver = scenarioContext.Get<IWebDriver>("currentDriver");
             helper = new Helper(webDriver);
-           // helper.WaitForElementIsVisibleByXPath("//*[@class='ng-binding' and contains(text(),'Dashboard')]");
-            
+           
         }
         
-        public IWebElement mnuAccounting => webDriver.FindElement(By.XPath("//*[@data-name='navigation-menu/accounting']"));
+        public IWebElement mnuElement (String text) {
+            return webDriver.FindElement(By.XPath("//*[@data-name='navigation-menu/" + text.ToLower() + "']"));
+        } 
         public IWebElement mnuBankAccounts => webDriver.FindElement(By.XPath("//*[@data-name='navigation-menu/accounting/bank-accounts']"));
       
       
-      public void ClickSubmenuAccounting() {
-            
-            helper.WaitForElementIsVisibleByXPath("//*[@data-name='navigation-menu/accounting']");
-            mnuAccounting.Click();
-         }
 
-        public void ClickSubmenuBankAccounts()
+        public void ClickSubmenu(String text)
         {
+
+            helper.WaitForElementIsVisibleByXPath("//*[@data-name='navigation-menu/" + text.ToLower() + "']");
+            mnuElement(text).Click();
+        }
+        
+
+        public void ClickSubmenuBankAccounts() { 
 
             helper.WaitForElementIsVisibleByXPath("//*[@data-name='navigation-menu/accounting/bank-accounts']");
             mnuBankAccounts.Click();

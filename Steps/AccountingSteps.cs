@@ -29,18 +29,15 @@ namespace Specflow_Xero.Steps
         {
             dynamic data = table.CreateDynamicInstance();
             LoginPage loginPage = new LoginPage(this._scenarioContext);
-            //loginPage.ClickLogin();
-
             loginPage.EnterCredentials(data.Username, data.Password);
-            //loginPage.ClickLoginButton();
 
         }
 
-        [When(@"I click Accounting from menu")]
-        public void WhenIClickAccounting()
+        [When(@"I click '(.*)' from menu")]
+        public void WhenIClickAccounting(String text)
         {
             DashboardPage dashboard = new DashboardPage(this._scenarioContext);
-            dashboard.ClickSubmenuAccounting();
+            dashboard.ClickSubmenu(text);
             dashboard.ClickSubmenuBankAccounts();
             
         }
@@ -51,21 +48,8 @@ namespace Specflow_Xero.Steps
             dynamic data = table.CreateDynamicInstance();
             BankAccountsPage bankAccountsPage = new BankAccountsPage(this._scenarioContext);
             bankAccountsPage.AddBankName(data);
-        }
-
-
-
-
-
-        [Then(@"An alert message appears with text")]
-        public void ThenAnAlertMessageAppearsWithText(Table table)
-        {
-            dynamic data = table.CreateDynamicInstance();
-            Helper helper = new Helper(webDriver);
-            helper.checkMessageBoxText(data.Message);
 
         }
-
 
   
 

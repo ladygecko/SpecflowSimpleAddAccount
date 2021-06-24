@@ -1,4 +1,3 @@
-# Specflow_Unleashed
 
 
 # Introduction
@@ -7,4 +6,4 @@ This contains simple hooks methods for before and after scenarios, Helper class 
 
 # Setup
 
-You should use Google Chrome browser Version Version 91.0.4472.114 to runs this test.
+You should use Google Chrome browser Version 91.0.4472.114 to runs this test.

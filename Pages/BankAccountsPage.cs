@@ -12,7 +12,7 @@ namespace Specflow_Xero.Pages
 {
     public class BankAccountsPage
     {
-      
+
         private readonly IWebDriver webDriver;
         private readonly Helper helper;
 
@@ -24,7 +24,9 @@ namespace Specflow_Xero.Pages
         public IWebElement btnAddBankAccount => webDriver.FindElement(By.XPath("//*[@data-automationid='Add Bank Account-button']"));
         public IWebElement txtBankSearch => webDriver.FindElement(By.XPath("//*[@name='xui-searchfield-1018-inputEl']"));
 
-        public IWebElement txtDatarecord => webDriver.FindElement(By.XPath("//*[@data-recordindex='0']"));
+        public IWebElement txtDatarecord(String name) {
+            return webDriver.FindElement(By.XPath("//*[@data-boundview='dataview-1021' and text()='"+ name +"']"));
+            }
 
         public IWebElement txtAcctName => webDriver.FindElement(By.XPath("//*[@id='accountname-1037-inputEl']"));
         public IWebElement txtAcctType => webDriver.FindElement(By.XPath("//*[@id='accounttype-1039-inputEl']"));
@@ -34,12 +36,18 @@ namespace Specflow_Xero.Pages
         public IWebElement btnContinue => webDriver.FindElement(By.XPath("//*[@id='common-button-submit-1015-btnInnerEl']"));
         public void AddBankName(dynamic data) {
             btnAddBankAccount.Click();
-            helper.WebdriverWait(1000);
-            txtBankSearch.SendKeys(data.BankName);
+            
+            var bankUL = webDriver.FindElement(By.XPath("//*[@componentid='dataview-1021']"));
+            var elements = bankUL.FindElements(By.TagName("li"));
+            foreach (IWebElement li in elements)
+            {
+                if (li.Text.Equals("ANZ (NZ)"))
+                {
+                    li.Click();
+                    break;
+                }
+            }
 
-
-            IJavaScriptExecutor executor = (IJavaScriptExecutor) webDriver;
-            executor.ExecuteScript("arguments[0].click();", txtDatarecord);
             helper.WaitForElementIsVisibleByXPath("//*[@id='accountname-1037-inputEl']");
             txtAcctName.SendKeys(data.AccountName);
             pickerAcctType.Click();
@@ -48,10 +56,6 @@ namespace Specflow_Xero.Pages
             txtAcctNumber.SendKeys(acctNo);
             btnContinue.Click();
               
-
-        //    helper.WebdriverWait(1000);
-        //    txtDatarecord.Click();
-
         }
 
 

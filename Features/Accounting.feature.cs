@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SpecflowSimpleAddAccount.Features
+namespace Specflow_Xero.Features
 {
     using TechTalk.SpecFlow;
     using System;
@@ -119,7 +119,7 @@ this.FeatureBackground();
  testRunner.Given("I login to Xero with below credentials", ((string)(null)), table1, "Given ");
 #line hidden
 #line 7
- testRunner.When("I click Accounting from menu", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("I click \'Accounting\' from menu", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
                 TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
                             "BankName",

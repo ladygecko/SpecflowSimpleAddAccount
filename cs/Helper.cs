@@ -19,43 +19,26 @@ namespace Specflow_Xero.Pages
         public void WaitForElementIsVisibleByXPath(String xpath) {
             TimeSpan span = new TimeSpan(0, 0, 0, 30, 0);
             WebDriverWait wait = new WebDriverWait(webDriver, span);
-            wait.Until(ExpectedConditions.ElementIsVisible(By.XPath(xpath)));
+            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath(xpath)));
         }
 
         public void WaitForElementIsVisibleByID(String id)
         {
             TimeSpan span = new TimeSpan(0, 0, 0, 30, 0);
             WebDriverWait wait = new WebDriverWait(webDriver, span);
-            wait.Until(ExpectedConditions.ElementIsVisible(By.Id(id)));
+            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.Id(id)));
         }
 
         public void WaitForElementIsVisibleByName(String name)
         {
             TimeSpan span = new TimeSpan(0, 0, 0, 30, 0);
             WebDriverWait wait = new WebDriverWait(webDriver, span);
-            wait.Until(ExpectedConditions.ElementIsVisible(By.Name(name)));
+            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.Name(name)));
         }
 
 
         public void WebdriverWait(int milliS)  => System.Threading.Thread.Sleep(milliS);
 
-        public void checkMessageBoxText(String message)
-        {
-
-            WaitForElementIsVisibleByXPath("//*[@class='ui-pnotify-text ']");
-            var xPathmessage = webDriver.FindElement(By.XPath("//*[@class='ui-pnotify-text ']")).Text;
-            Assert.AreEqual(message, xPathmessage);
-
-        }
-
-        public void checkMessageBoxTextContains(String message)
-        {
-
-            WaitForElementIsVisibleByXPath("//*[@class='ui-pnotify-text ']");
-            var xPathmessage = webDriver.FindElement(By.XPath("//*[@class='ui-pnotify-text ']")).Text;
-            Assert.True(xPathmessage.Contains(message));
-
-        }
 
 
     }
