@@ -25,10 +25,25 @@ namespace Specflow_Xero.Pages
         private IWebElement pickerAcctType => webDriver.FindElement(By.XPath("//*[@id='accounttype-1039-trigger-picker']"));
         private IWebElement txtAcctNumber => webDriver.FindElement(By.XPath("//*[@id='accountnumber-1068-inputEl']"));
         private IWebElement btnContinue => webDriver.FindElement(By.XPath("//*[@id='common-button-submit-1015-btnInnerEl']"));
+
+        private void selectBankNamefromDropdown(String bankname) {
+
+            var bankUL = webDriver.FindElement(By.XPath("//*[@componentid='dataview-1021']"));
+            var elements = bankUL.FindElements(By.TagName("li"));
+            foreach (IWebElement li in elements)
+            {
+                if (li.Text.Equals(bankname))
+                {
+                    li.Click();
+                    break;
+                }
+            }
+            
+        }
         public void AddBankName(dynamic data) {
             btnAddBankAccount.Click();
-            
-            var bankUL = webDriver.FindElement(By.XPath("//*[@componentid='dataview-1021']"));
+
+            /*var bankUL = webDriver.FindElement(By.XPath("//*[@componentid='dataview-1021']"));
             var elements = bankUL.FindElements(By.TagName("li"));
             foreach (IWebElement li in elements)
             {
@@ -37,8 +52,8 @@ namespace Specflow_Xero.Pages
                     li.Click();
                     break;
                 }
-            }
-
+            }*/
+            selectBankNamefromDropdown(data.BankName);
             helper.WaitForElementIsVisibleByXPath("//*[@id='accountname-1037-inputEl']");
             txtAcctName.SendKeys(data.AccountName);
             pickerAcctType.Click();
