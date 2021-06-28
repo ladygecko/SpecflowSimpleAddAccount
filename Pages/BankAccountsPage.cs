@@ -1,10 +1,5 @@
-﻿using NUnit.Framework;
-using OpenQA.Selenium;
-using OpenQA.Selenium.Support.UI;
-using SeleniumExtras.WaitHelpers;
+﻿using OpenQA.Selenium;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using TechTalk.SpecFlow;
 
 
@@ -21,19 +16,15 @@ namespace Specflow_Xero.Pages
             helper = new Helper(webDriver);
 
         }
-        public IWebElement btnAddBankAccount => webDriver.FindElement(By.XPath("//*[@data-automationid='Add Bank Account-button']"));
-        public IWebElement txtBankSearch => webDriver.FindElement(By.XPath("//*[@name='xui-searchfield-1018-inputEl']"));
+        private IWebElement btnAddBankAccount => webDriver.FindElement(By.XPath("//*[@data-automationid='Add Bank Account-button']"));
+        private IWebElement txtBankSearch => webDriver.FindElement(By.XPath("//*[@name='xui-searchfield-1018-inputEl']"));
 
-        public IWebElement txtDatarecord(String name) {
-            return webDriver.FindElement(By.XPath("//*[@data-boundview='dataview-1021' and text()='"+ name +"']"));
-            }
+        private IWebElement txtAcctName => webDriver.FindElement(By.XPath("//*[@id='accountname-1037-inputEl']"));
+        private IWebElement txtAcctType => webDriver.FindElement(By.XPath("//*[@id='accounttype-1039-inputEl']"));
 
-        public IWebElement txtAcctName => webDriver.FindElement(By.XPath("//*[@id='accountname-1037-inputEl']"));
-        public IWebElement txtAcctType => webDriver.FindElement(By.XPath("//*[@id='accounttype-1039-inputEl']"));
-
-        public IWebElement pickerAcctType => webDriver.FindElement(By.XPath("//*[@id='accounttype-1039-trigger-picker']"));
-        public IWebElement txtAcctNumber => webDriver.FindElement(By.XPath("//*[@id='accountnumber-1068-inputEl']"));
-        public IWebElement btnContinue => webDriver.FindElement(By.XPath("//*[@id='common-button-submit-1015-btnInnerEl']"));
+        private IWebElement pickerAcctType => webDriver.FindElement(By.XPath("//*[@id='accounttype-1039-trigger-picker']"));
+        private IWebElement txtAcctNumber => webDriver.FindElement(By.XPath("//*[@id='accountnumber-1068-inputEl']"));
+        private IWebElement btnContinue => webDriver.FindElement(By.XPath("//*[@id='common-button-submit-1015-btnInnerEl']"));
         public void AddBankName(dynamic data) {
             btnAddBankAccount.Click();
             

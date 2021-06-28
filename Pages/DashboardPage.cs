@@ -1,9 +1,5 @@
 ﻿using OpenQA.Selenium;
-using OpenQA.Selenium.Support.UI;
-using SeleniumExtras.WaitHelpers;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using TechTalk.SpecFlow;
 
 namespace Specflow_Xero.Pages
@@ -19,11 +15,11 @@ namespace Specflow_Xero.Pages
             helper = new Helper(webDriver);
            
         }
-        
-        public IWebElement mnuElement (String text) {
+
+        private IWebElement mnuElement (String text) {
             return webDriver.FindElement(By.XPath("//*[@data-name='navigation-menu/" + text.ToLower() + "']"));
         }
-        public IWebElement mnuBankAccounts => webDriver.FindElement(By.XPath("//*[@data-name='navigation-menu/accounting/bank-accounts']"));
+        private IWebElement mnuBankAccounts => webDriver.FindElement(By.XPath("//*[@data-name='navigation-menu/accounting/bank-accounts']"));
         
       
 

@@ -1,9 +1,4 @@
 ﻿using OpenQA.Selenium;
-using OpenQA.Selenium.Support.UI;
-using SeleniumExtras.WaitHelpers;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using TechTalk.SpecFlow;
 
 namespace Specflow_Xero.Pages
@@ -19,15 +14,10 @@ namespace Specflow_Xero.Pages
            
         }
 
-        public IWebElement btnLogin => webDriver.FindElement(By.XPath("//*[@data-automationid='LoginSubmit--button']"));
-        public IWebElement txtUsername => webDriver.FindElement(By.Name("Username"));
-        public IWebElement txtPassword => webDriver.FindElement(By.Name("Password"));
-        
-        public void ClickLogin()
-        {
-           var btn =  webDriver.FindElement(By.XPath("//*[@class='login']"));
-            btn.Click();
-        }
+        private IWebElement btnLogin => webDriver.FindElement(By.XPath("//*[@data-automationid='LoginSubmit--button']"));
+        private IWebElement txtUsername => webDriver.FindElement(By.Name("Username"));
+        private IWebElement txtPassword => webDriver.FindElement(By.Name("Password"));
+      
 
         public void EnterCredentials(string username, string password) {
            
